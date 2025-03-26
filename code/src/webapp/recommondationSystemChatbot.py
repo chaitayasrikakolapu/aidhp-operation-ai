@@ -1,5 +1,5 @@
 import random
-from wealthAdvisor import *
+from stockRecommender import *
 from riskScoreCalculator import *
 
 responses = {
@@ -22,7 +22,7 @@ def getRecommendedStocksAndAssets():
     customerDataRecord = fetchCustomerData(customerID)
     risk_score = predict_risk(customerDataRecord)
     customerDataRecord["Risk_Score"] = risk_score
-    return recommend_stocks_by_customer(customerDataRecord)
+    return recommend_stock(customerDataRecord)
     
 
 def get_response(user_input):       
