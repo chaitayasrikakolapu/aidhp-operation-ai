@@ -45,8 +45,9 @@ def predict_risk(customerDBRecord:any):
     data['Credit_Score'] = customerDBRecord["Credit_Score"]
     data['Employment_Status'] = customerDBRecord["Employment_Status"]
 
-    input_data = pd.DataFrame([data.dict()])
-    risk_score = model.predict(input_data)[0]
+    
+    #input_data = pd.DataFrame(data, 0)
+    risk_score = model.predict(customerDBRecord)[0]
 
     #input_data = pd.DataFrame([data])
     #risk_score = model.predict(pd.DataFrame(data, 0))[0]

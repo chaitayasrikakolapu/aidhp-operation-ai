@@ -36,7 +36,7 @@ def get_response(user_input):
     
     for key in responses.keys():
         if key in user_input:
-            userContext['question'] =  responses[key]
+            userContext['question'] =  responses[key][0]
             return random.choice(responses[key])
     
     #print('userinput:'+user_input)
@@ -44,7 +44,7 @@ def get_response(user_input):
     #print('previousQuestion:'+ previousQuestion)
 
     nextQuestion = "Hi" 
-    if previousQuestion == "['Hi, Are you Existing Customer? (yes/no)']":
+    if previousQuestion == "Hi, Are you Existing Customer? (yes/no)":
         if user_input == "yes":
             nextQuestion = "Please provide your CustomerId"
         else:
