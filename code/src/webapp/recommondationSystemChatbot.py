@@ -1,5 +1,6 @@
 import random
 from riskScoreCalculator import *
+from recommender_service import *
 
 responses = {
     "hello": ["Hi, Please provide your CustomerId"],
@@ -19,13 +20,15 @@ returnsPer = 0
 
 def getRecommendedStocksAndAssets():
     customerDataRecord = fetchCustomerData(int(userContext['customerID']))
-    
-    risk_score = predict_risk(customerDataRecord)
-    customerDataRecord["Risk_Score"] = risk_score
+    return recommend_stocks(customerDataRecord)
+    # # risk_score = predict_risk(customerDataRecord)
+    # # customerDataRecord["Risk_Score"] = risk_score
 
-    print(customerDataRecord)
+    # # print(customerDataRecord)
 
-    return "Sample records"
+    # return "Sample records"
+
+
     
 
 def get_response(user_input):       
