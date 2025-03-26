@@ -1,4 +1,6 @@
 import random
+from wealthAdvisor import *
+from riskScoreCalculator import *
 
 responses = {
     "hello": ["Hi, Please provide your CustomerId"],
@@ -15,9 +17,15 @@ investmentAmt = 0
 tenure = 0
 returnsPer = 0
 
-def get_response(user_input):
-   
+
+def getRecommendedStocksAndAssets():
+    customerDataRecord = fetchCustomerData(customerID)
+    risk_score = predict_risk(customerDataRecord)
+    customerDataRecord["Risk_Score"] = risk_score
+    return recommend_stocks_by_customer(customerDataRecord)
     
+
+def get_response(user_input):       
     user_input = user_input.lower()
     
     for key in responses.keys():
@@ -47,7 +55,7 @@ def get_response(user_input):
         
     elif previousQuestion == "Expected Returns (in percentage)?":
         returnsPer=user_input
-        return "SBI Small CAP"
+        return getRecommendedStocksAndAssets()
 
     print("nextquestion:"+ nextQuestion)
     if nextQuestion == "Hi":

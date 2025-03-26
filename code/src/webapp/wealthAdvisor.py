@@ -28,18 +28,14 @@ import lightgbm as lgb
 from sklearn.model_selection import train_test_split
 
 
-# %%
-from google.colab import drive
 
-# Mount Drive
-drive.mount('/content/drive')
 
 # %% [markdown]
 # **Fetch Stock Info**
 
 # %%
 # Load csv File
-df = pd.read_csv("/content/drive/My Drive/Colab Notebooks/stock_data.csv")
+df = pd.read_csv("stock_data.csv")
 # Select 10 Random Rows
 random_stocks = df.sample(n=10, random_state=42)  # Set random_state for reproducibility
 random_stocks
@@ -196,6 +192,11 @@ def match_investor_profile(df, investor_profile):
 
 # %%
 
+def recommend_stocks_by_customer(customerData:any):
+    return recommend_stocks(customerData["Net_Worth"], customerData["Liquidity"],
+                            customerData["Risk_Score"], customerData["Region"],
+                            customerData["Assets"], customerData["Mortgage"],
+                            customerData["Preferred_Sectors"])
 
 # Recommend Stocks Based on Investor Profile
 def recommend_stocks(net_worth, liquidity, risk_score, region, assets, mortgage, preferred_sectors):
