@@ -1,4 +1,6 @@
 import random
+from stockRecommender import *
+from riskScoreCalculator import *
 
 responses = {
     "hello": ["Hi, Please provide your CustomerId"],
@@ -15,9 +17,32 @@ investmentAmt = 0
 tenure = 0
 returnsPer = 0
 
-def get_response(user_input):
-   
+
+def getRecommendedStocksAndAssets():
+    # customerDataRecord = fetchCustomerData(userContext['customerID'])
+    customerDataRecord = {
+  "Customer_ID": 100009,
+  "Name": "Customer_9",
+  "Age": 75,
+  "Gender": "Female",
+  "Location": "Rural",
+  "Annual_Income": 193226,
+  "Has_Loan": "Yes",
+  "Loan_Amount": 422772,
+  "Monthly_Expenses": 7408,
+  "Credit_Score": 11181,
+  "Savings": 126017,
+  "Debt": 586,
+  "Employment_Status": "Employed",
+  "Risk_Score": 36.68
+}
+
+    # risk_score = predict_risk(customerDataRecord)
+    customerDataRecord["Risk_Score"] = 36.68
+    return recommend_stock(customerDataRecord)
     
+
+def get_response(user_input):       
     user_input = user_input.lower()
     
     for key in responses.keys():
@@ -31,7 +56,7 @@ def get_response(user_input):
 
     nextQuestion = "Hi" 
     if 'CustomerId' in previousQuestion:
-        customerID=user_input
+        userContext['customerID']=user_input
         nextQuestion = "Do you have investment plans? (yes/no)"
         
     elif previousQuestion == "Do you have investment plans? (yes/no)":
@@ -47,7 +72,7 @@ def get_response(user_input):
         
     elif previousQuestion == "Expected Returns (in percentage)?":
         returnsPer=user_input
-        return "SBI Small CAP"
+        return getRecommendedStocksAndAssets()
 
     print("nextquestion:"+ nextQuestion)
     if nextQuestion == "Hi":
