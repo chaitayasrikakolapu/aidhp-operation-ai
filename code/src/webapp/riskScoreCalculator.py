@@ -2,10 +2,10 @@ import joblib
 import pandas as pd
 
 
-model = joblib.load("risk_score_model_v3.pkl")
-df = pd.read_csv("banking_risk_dataset.csv")
+model = joblib.load("../Risk_analyzer/risk_score_model_v3.pkl")
+df = pd.read_csv("../Risk_analyzer/banking_risk_dataset.csv")
 
-class CustomerData(BaseModel):
+class CustomerData():
     Age: int
     Gender: str
     Region: str
@@ -18,8 +18,8 @@ class CustomerData(BaseModel):
     Credit_Score: float
     Employment_Status: str
 
-def fetchCustomerData(customerId:str):
-    return df.loc[df['Customer_ID'] == customerId]
+def fetchCustomerData(customerId:int):
+    return df.loc[df['Customer_ID'] == 100009]
     
 
 
